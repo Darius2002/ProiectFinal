@@ -1,16 +1,20 @@
 package clase;
 import javax.swing.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class InterfataMain {
     private String selectie;
     private JFrame FereastraDeDeschidere;
     private Utilizator persoana;
+    String imagine = "false-2061131_1280.png";
 
     public InterfataMain(){ // logo, culori
         FereastraDeDeschidere = new JFrame();
@@ -198,9 +202,9 @@ public class InterfataMain {
     private void Urmator() // culori 
     {
         JFrame fereastra = new JFrame();
-        fereastra.setTitle("Hotel Firenze: Creeaza cont");
+        fereastra.setTitle("Hotel Firenze: Selectie");
         fereastra.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        fereastra.setSize(400, 300);
+        fereastra.setSize(300, 200);
         fereastra.setLocationRelativeTo(null);
 
         JPanel PanouPrincipal = new JPanel(new GridLayout(3, 1));
@@ -217,7 +221,7 @@ public class InterfataMain {
         JTextField textField3 = new JTextField(2);
         rand3.add(textField3);
 
-        JPanel rand2 = new JPanel();
+        JPanel rand2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JButton salveaza = new JButton("Salveaza");
         salveaza.addActionListener(new ActionListener() {
             @Override
@@ -273,14 +277,7 @@ public class InterfataMain {
                 }
                 catch(NumberFormatException nu)
                 {
-                    JFrame eroare = new JFrame();
-                    eroare.setTitle("eroare");
-                    eroare.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    eroare.setSize(300, 100);
-                    eroare.setLocationRelativeTo(null);
-                    JLabel text4 = new JLabel("Adaugati o valoare numerica in campul/campurile unde se cer");
-                    eroare.add(text4);
-                    eroare.setVisible(true);
+                    Eroare();
                 }  
             }
         });
@@ -320,7 +317,6 @@ public class InterfataMain {
         }
 
         });
-        System.out.println(selectie);
         panel2.add(dropdown);
 
 
@@ -347,4 +343,24 @@ public class InterfataMain {
         frame.setVisible(true);
 
     }
+
+    public void Eroare()
+    {           
+        JPanel panel = new JPanel();
+        JFrame eroare = new JFrame();
+        eroare.setTitle("eroare");
+        eroare.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        eroare.setSize(300, 100);
+        eroare.setLocationRelativeTo(null);
+        JLabel text4 = new JLabel("Adaugati o valoare numerica in campul/campurile unde se cer");
+        eroare.add(text4);
+
+        ImageIcon imagine2 = new ImageIcon("false-2061131_1280.png");
+        JLabel label = new JLabel(imagine2);
+
+        eroare.add(label);
+        eroare.setVisible(true);
+
+    }
 }
+
