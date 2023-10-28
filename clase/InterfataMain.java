@@ -1,11 +1,6 @@
 package clase;
 import javax.swing.*;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -13,8 +8,10 @@ import java.util.ArrayList;
 import java.awt.*;
 
 public class InterfataMain {
+    private String selectie;
     private JFrame FereastraDeDeschidere;
     private Utilizator persoana;
+    private ArrayList list = new ArrayList<Camere>();
 
     public InterfataMain(){ // logo, culori
         FereastraDeDeschidere = new JFrame();
@@ -120,7 +117,7 @@ public class InterfataMain {
         JPanel rand4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JButton salveaza = new JButton("Salveaza");
         salveaza.setLayout(new FlowLayout(FlowLayout.LEFT));
-         salveaza.addActionListener(new ActionListener() {
+        salveaza.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 String nr = textField3.getText();
@@ -154,6 +151,7 @@ public class InterfataMain {
                             JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(daButton);
                             currentFrame.dispatchEvent(new WindowEvent(currentFrame, WindowEvent.WINDOW_CLOSING));
                             ferestra.dispose();
+                            AdaugareCamere();
                             
                          }
                     });
@@ -214,7 +212,7 @@ public class InterfataMain {
         JTextField textField1 = new JTextField(4);
         rand1.add(textField1);
 
-        JPanel rand3 = new JPanel();
+        JPanel rand3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel text3 = new JLabel("Numarul de persoane");
         rand3.add(text3);
         JTextField textField3 = new JTextField(2);
@@ -295,5 +293,77 @@ public class InterfataMain {
         PanouPrincipal.add(rand2);
         fereastra.add(PanouPrincipal);
         fereastra.setVisible(true);
+    }
+
+    private void AdaugareCamere()
+    {
+        JFrame frame = new JFrame("Selectare");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(600, 600);
+        frame.setLocationRelativeTo(null);
+
+        JPanel panelPrincipal = new JPanel(new GridLayout(4,1));
+
+        JPanel panel1 = new JPanel();
+        JLabel text1 = new JLabel("Numarul de persoane : " + persoana.getNrPersoane());
+        panel1.add(text1);
+        JLabel text2 = new JLabel("     Portofelul contului : " + persoana.getPortofel());
+        panel1.add(text2);
+
+        JPanel panel2 = new JPanel();
+        String[] optiuni = {"Standard", "Mediu", "Ridicat"};
+        JComboBox<String> dropdown = new JComboBox<>(optiuni);
+        dropdown.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                String da = (String) dropdown.getSelectedItem();
+                selectie = da;
+                JOptionPane.showMessageDialog(null, "Optiune selectata " + selectie);
+            }
+
+        });
+        panel2.add(dropdown);
+
+
+        JPanel panel3 = new JPanel();
+        JLabel label = new JLabel ("Numarul de persoane cazate in camera : ");
+        panel3.add(label);
+        JTextField text = new JTextField(3);
+        panel3.add(text);
+
+        JPanel panel4 = new JPanel();
+        JButton salveaza = new JButton("Salveaza");
+        salveaza.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                String nrP = text.getText();
+                try{
+                    int NrP = Integer.parseInt(nrP);
+                    if (NrP > 5)
+                    {
+                        //fereastra eroare nu poti avea mai mult de 5 persoane in camera
+                    }
+                    else{
+                        //fereastra modala
+                        if(selectie.equals("Standard"));
+                        {
+                            Camere aux = new Camere();
+                        }
+                    }
+                }
+                catch(NumberFormatException nu){
+                    //fereastra eroare nu ai introdus nr;
+                }
+            }
+        });
+        panel4.add(salveaza);
+
+
+        panelPrincipal.add(panel1);
+        panelPrincipal.add(panel2);
+        panelPrincipal.add(panel3);
+        panelPrincipal.add(panel4);
+        frame.add(panelPrincipal);
+        frame.setVisible(true);
+
     }
 }
