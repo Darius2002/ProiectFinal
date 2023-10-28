@@ -14,11 +14,9 @@ public class InterfataMain {
     private String selectie;
     private JFrame FereastraDeDeschidere;
     private Utilizator persoana;
-<<<<<<< HEAD
     String imagine = "false-2061131_1280.png";
-=======
     private ArrayList list = new ArrayList<Camere>();
->>>>>>> 2bbf470dec02867a67820a07f141cdddab3a6deb
+    
 
     public InterfataMain(){ // logo, culori
         FereastraDeDeschidere = new JFrame();
@@ -295,7 +293,7 @@ public class InterfataMain {
         fereastra.setVisible(true);
     }
 
-    private void AdaugareCamere()
+    private void AdaugareCamere() // adugare un rand nou in care sa spunem cat costa ficare timp de camera pe persoana max 5 pers in camera 
     {
         JFrame frame = new JFrame("Selectare");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -342,11 +340,27 @@ public class InterfataMain {
                     {
                         //fereastra eroare nu poti avea mai mult de 5 persoane in camera
                     }
+                    else if (NrP > persoana.getNrPersoane()){
+                        // fereastra nr de pesoane selectate in acesta camera este mai mare decat persoanle ce trebuie cazate;
+                    }
                     else{
-                        //fereastra modala
-                        if(selectie.equals("Standard"));
+                        
+                        int suma = NrP * Camere.pret(selectie);
+                        if (suma > persoana.getPortofel())
                         {
-                            Camere aux = new Camere();
+                            //fereastra eroare ca nu avem destul bani si posbilitatea de a mai adauga bani se inchde ferestra si se reapleaza functia
+                        }
+                        else if(persoana.getNrPersoane() == 0)
+                        {
+                            //mergem mai departe
+                            frame.dispose();
+                        }
+                        else{
+                            list.add(new Camere(selectie, NrP));
+                            persoana.ScaderePersoane(NrP);
+                            persoana.scaderePortfel(suma);
+                            frame.dispose();
+                            AdaugareCamere();
                         }
                     }
                 }
