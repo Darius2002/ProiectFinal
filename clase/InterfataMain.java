@@ -1,4 +1,5 @@
 package clase;
+import javax.swing.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.awt.GridLayout;
+import java.awt.Dimension;
+import java.awt.Font;
 
 public class InterfataMain {
     private JFrame FereastraDeDeschidere;
@@ -20,21 +23,32 @@ public class InterfataMain {
         FereastraDeDeschidere = new JFrame();
         FereastraDeDeschidere.setTitle("Hotel Firenze: Pagina de Deschidere");
         FereastraDeDeschidere.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        FereastraDeDeschidere.setSize(600, 600);
+        FereastraDeDeschidere.setSize(700, 300);
         FereastraDeDeschidere.setLocationRelativeTo(null);
 
-        JPanel PanouPrincipal = new JPanel(new GridLayout(3, 1, 0, 0));
+        JPanel PanouPrincipal = new JPanel(new GridLayout(4, 1, 0, 0));
         
         JPanel rand1 = new JPanel();
-        JLabel text1 = new JLabel("Bun venit la Hotel Firenze!!!");
+        JLabel text1 = new JLabel("Bun venit la Hotel Firenze");
+        Font font = new Font("Cambria", Font.BOLD, 30);
+        text1.setFont(font);
         rand1.add(text1);
 
         JPanel rand2 = new JPanel();
-        JLabel text2 = new JLabel("Daca doroti sa va cazati pasa butonul CREEAZA sau doriri sa mergeti doar la restaurant butonul URMATOR");
+        JLabel text2 = new JLabel("<html>Daca doriti sa va cazati apasa butonul <b>CREEAZA</b></html>");
+        Font font1 = new Font("Cambria", Font.PLAIN, 20);
+        text2.setFont(font1);
         rand2.add(text2);
 
         JPanel rand3 = new JPanel();
+        JLabel text3 = new JLabel("<html>Daca doriti sa mergeti doar la restaurant apasa butonul <b>URMATOR</b></html>");
+        Font font2 = new Font("Cambria", Font.PLAIN,20);
+        text3.setFont(font2);
+        rand3.add(text3);
+
+        JPanel rand4 = new JPanel();
         JButton creeaza = new JButton("Creeaza");
+        creeaza.setPreferredSize(new Dimension(130,50));
         creeaza.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -43,8 +57,9 @@ public class InterfataMain {
                 FerestaCreazaCont();
             }
         });
-        rand3.add(creeaza);
+        rand4.add(creeaza);
         JButton urmator = new JButton("Urmator");
+        urmator.setPreferredSize(new Dimension(130,50));
         urmator.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -53,13 +68,13 @@ public class InterfataMain {
                 Urmator();
             }
         });
-        rand3.add(urmator);
-        
+        rand4.add(urmator);
 
         
         PanouPrincipal.add(rand1);
         PanouPrincipal.add(rand2);
         PanouPrincipal.add(rand3);
+        PanouPrincipal.add(rand4);
         FereastraDeDeschidere.add(PanouPrincipal);
     }
 
