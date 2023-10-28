@@ -173,10 +173,6 @@ public class InterfataMain {
                     panouMare.add(panel2);
                     continuare.add(panouMare);
                     continuare.setVisible(true);
-<<<<<<< HEAD
-=======
-                    
->>>>>>> 9ccdc0a350b9bf293c8c66f1972c747cd661c9c9
                 }
                 catch(NumberFormatException nu){
                     JFrame eroare = new JFrame();
