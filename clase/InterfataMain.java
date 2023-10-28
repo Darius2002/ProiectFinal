@@ -153,7 +153,7 @@ public class InterfataMain {
                             JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(daButton);
                             currentFrame.dispatchEvent(new WindowEvent(currentFrame, WindowEvent.WINDOW_CLOSING));
                             ferestra.dispose();
-                            //urmatoarea fereastra (se apeleaza functia)
+                            
                          }
                     });
                     panel2.add(daButton);
@@ -172,15 +172,6 @@ public class InterfataMain {
                     panouMare.add(panel2);
                     continuare.add(panouMare);
                     continuare.setVisible(true);
-
-            
-                   /*  persoana = Utilizator.Init(nume, parola);
-                    persoana.setPortofel(Nr);
-                    persoana.setNrPersoane(NrP);
-                    //JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(salveaza);
-                    //currentFrame.dispatchEvent(new WindowEvent(currentFrame, WindowEvent.WINDOW_CLOSING));
-                    /// urmatoare fereastra
-                    */
                 }
                 catch(NumberFormatException nu){
                     JFrame eroare = new JFrame();

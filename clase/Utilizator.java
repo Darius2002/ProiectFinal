@@ -46,4 +46,14 @@ public class Utilizator {
     {
         portofel += suma;
     }
+    public int getPortofel() {
+        return portofel;
+    }
+    public int getNrPersoane() {
+        return nrPersoane;
+    }
+
+    public void ScaderePersoane(int nr){
+        nrPersoane -= nr;
+    }
 }
