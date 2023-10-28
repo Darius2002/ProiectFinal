@@ -56,4 +56,9 @@ public class Utilizator {
     public void ScaderePersoane(int nr){
         nrPersoane -= nr;
     }
+
+    public void scaderePortfel(int nr)
+    {
+        portofel -= nr;
+    }
 }

@@ -1,7 +1,7 @@
 package clase;
 public class Camere{
     private boolean standard, mediu, ridicat;
-    private final int PretStandard = 100 , PretMediu = 150, PretRidicat = 300, NrMAXpersoane = 5;
+    static final int PretStandard = 100 , PretMediu = 150, PretRidicat = 300, NrMAXpersoane = 5;
     private int nrPersoane;
     
     public Camere(String s, int nrPersoane){
@@ -57,5 +57,21 @@ public class Camere{
     public boolean getRidicat()
     {
         return ridicat;
+    }
+
+    static int pret(String s)
+    {
+         if (s.equals("Standard"))
+        {
+            return PretStandard;
+        }
+        else if (s.equals("Mediu"))
+        {
+           return PretMediu;
+        }
+        else 
+        {
+          return PretRidicat;  
+        }
     }
 }
