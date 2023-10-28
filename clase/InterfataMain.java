@@ -8,17 +8,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 public class InterfataMain {
     private String selectie;
     private JFrame FereastraDeDeschidere;
     private Utilizator persoana;
-<<<<<<< HEAD
-    String imagine = "false-2061131_1280.png";
-=======
-    private ArrayList list = new ArrayList<Camere>();
->>>>>>> 2bbf470dec02867a67820a07f141cdddab3a6deb
+    private String imagine = "false-2061131_1280.png";
 
     public InterfataMain(){ // logo, culori
         FereastraDeDeschidere = new JFrame();
@@ -369,20 +366,35 @@ public class InterfataMain {
 
     public void Eroare()
     {           
-        JPanel panel = new JPanel();
+
+
+        JPanel panelMare = new JPanel();
+        JPanel panel1 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JFrame eroare = new JFrame();
         eroare.setTitle("eroare");
         eroare.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         eroare.setSize(300, 100);
         eroare.setLocationRelativeTo(null);
-        JLabel text4 = new JLabel("Adaugati o valoare numerica in campul/campurile unde se cer");
-        eroare.add(text4);
 
-        ImageIcon imagine2 = new ImageIcon("false-2061131_1280.png");
-        JLabel label = new JLabel(imagine2);
+        JLabel text4 = new JLabel("Adaugati o valoare numerica");
+        panel1.add(text4);
 
-        eroare.add(label);
-        eroare.setVisible(true);
+        try{
+            ImageIcon imagine2 = new ImageIcon(imagine);
+            Image imagineRedimensionata = imagine2.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+            ImageIcon imagineNoua = new ImageIcon(imagineRedimensionata);
+            JLabel label = new JLabel(imagineNoua);
+            panelMare.add(label, BorderLayout.WEST); // Imaginea în partea stângă
+            panelMare.add(text4, BorderLayout.CENTER); // Textul în partea dreaptă
+
+            eroare.add(panelMare);
+            eroare.setVisible(true);
+            eroare.setVisible(true);
+        } catch(java.awt.image.ImagingOpException ex)
+        {
+            ex.printStackTrace();
+        }
+
 
     }
 }
