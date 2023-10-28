@@ -10,9 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.awt.GridLayout;
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.*;
 
 public class InterfataMain {
     private JFrame FereastraDeDeschidere;
@@ -54,7 +52,7 @@ public class InterfataMain {
             public void actionPerformed(ActionEvent e){
                 JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(creeaza);
                 currentFrame.dispatchEvent(new WindowEvent(currentFrame, WindowEvent.WINDOW_CLOSING));
-                FerestaCreazaCont();
+                FereastraCreeazaCont();
             }
         });
         rand4.add(creeaza);
@@ -84,42 +82,45 @@ public class InterfataMain {
     }
 
 
-    private void FerestaCreazaCont() // scroll, culori
+    private void FereastraCreeazaCont() // scroll, culori
     {
         JFrame ferestra = new JFrame();
         ferestra.setTitle("Hotel Firenze: Creeaza cont");
         ferestra.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        ferestra.setSize(600, 600);
+        ferestra.setSize(400, 300);
         ferestra.setLocationRelativeTo(null);
 
         JPanel PanouPrincipal = new JPanel(new GridLayout(5, 1));
 
-        JPanel rand1 = new JPanel();
+
+        JPanel rand1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel text1 = new JLabel("Nume: ");
         rand1.add(text1);
         JTextField textField1 = new JTextField(20);
         rand1.add(textField1);
 
-        JPanel rand2 = new JPanel();
+        JPanel rand2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel text2 = new JLabel("Parola: ");
         rand2.add(text2);
         JTextField textField2 = new JTextField(20);
         rand2.add(textField2);
 
-        JPanel rand3 = new JPanel();
+        JPanel rand3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel text3 = new JLabel("Depunde o suma in portofelul contului: ");
         rand3.add(text3);
         JTextField textField3 = new JTextField(4);
         rand3.add(textField3);
         
-        JPanel rand5 = new JPanel();
-        JLabel text5 = new JLabel("Numarul de pesoane:");
+        JPanel rand5 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JLabel text5 = new JLabel("Numarul de persoane:");
         rand5.add(text5);
         JTextField textField4 = new JTextField(2);
+        textField4.setLayout(new FlowLayout(FlowLayout.LEFT));
         rand5.add(textField4);
 
-        JPanel rand4 = new JPanel();
+        JPanel rand4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JButton salveaza = new JButton("Salveaza");
+        salveaza.setLayout(new FlowLayout(FlowLayout.LEFT));
          salveaza.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -173,15 +174,7 @@ public class InterfataMain {
                     panouMare.add(panel2);
                     continuare.add(panouMare);
                     continuare.setVisible(true);
-
-            
-                   /*  persoana = Utilizator.Init(nume, parola);
-                    persoana.setPortofel(Nr);
-                    persoana.setNrPersoane(NrP);
-                    //JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(salveaza);
-                    //currentFrame.dispatchEvent(new WindowEvent(currentFrame, WindowEvent.WINDOW_CLOSING));
-                    /// urmatoare fereastra
-                    */
+                    
                 }
                 catch(NumberFormatException nu){
                     JFrame eroare = new JFrame();
@@ -212,12 +205,12 @@ public class InterfataMain {
         JFrame fereastra = new JFrame();
         fereastra.setTitle("Hotel Firenze: Creeaza cont");
         fereastra.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        fereastra.setSize(600, 600);
+        fereastra.setSize(400, 300);
         fereastra.setLocationRelativeTo(null);
 
         JPanel PanouPrincipal = new JPanel(new GridLayout(3, 1));
 
-        JPanel rand1 = new JPanel();
+        JPanel rand1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel text1 = new JLabel("Depunde o suma in portofelul: ");
         rand1.add(text1);
         JTextField textField1 = new JTextField(4);
@@ -228,7 +221,6 @@ public class InterfataMain {
         rand3.add(text3);
         JTextField textField3 = new JTextField(2);
         rand3.add(textField3);
-
 
         JPanel rand2 = new JPanel();
         JButton salveaza = new JButton("Salveaza");
@@ -241,11 +233,46 @@ public class InterfataMain {
                     int Nr = Integer.parseInt(nr);
                     int NrP = Integer.parseInt(nrP);
                     //Fereastra modala
-                    persoana = Utilizator.Init();
-                    persoana.setPortofel(Nr);
-                    persoana.setNrPersoane(NrP);
-                    JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(salveaza);
-                    currentFrame.dispatchEvent(new WindowEvent(currentFrame, WindowEvent.WINDOW_CLOSING));
+
+                    JFrame continuare = new JFrame("Continuare");
+                    continuare.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    continuare.setSize(300, 200);
+                    continuare.setLocationRelativeTo(null);
+
+                    JPanel panouMare = new JPanel(new GridLayout(2, 1));
+
+                    JPanel panel1 = new JPanel();
+                    JLabel apas = new JLabel("Doriti sa continuati?");
+                    panel1.add(apas);
+
+                    JPanel panel2 = new JPanel();
+
+                    JButton daButton = new JButton("Da");
+                    daButton.addActionListener(new ActionListener() {
+                         public void actionPerformed(ActionEvent e){
+                            persoana = Utilizator.Init();
+                            persoana.setPortofel(Nr);
+                            persoana.setNrPersoane(NrP);
+                            fereastra.dispose();
+                            continuare.dispose();
+                         }
+                    });
+                    panel2.add(daButton);
+
+                    JButton nuButton = new JButton("Nu");
+                    nuButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e)
+                        {
+                            continuare.dispose();
+                        }
+            
+                    });
+                    panel2.add(nuButton);
+
+                    panouMare.add(panel1);
+                    panouMare.add(panel2);
+                    continuare.add(panouMare);
+                    continuare.setVisible(true);
 
                     // urmatoarea fereastra
                 }
