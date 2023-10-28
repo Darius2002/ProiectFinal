@@ -41,4 +41,9 @@ public class Utilizator {
     public void setNrPersoane(int nrPersoane) {
         this.nrPersoane = nrPersoane;
     }
+
+    public void adugarePortofel(int suma)
+    {
+        portofel += suma;
+    }
 }
