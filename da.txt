@@ -1,0 +1,17 @@
+1. clasa utiliztor // date de logare
+2. clasa hotel // (numarul de camere si icadrarea lor)
+3. clasa obiecte camera // 
+
+
+
+
+Punctaj OOP 
+
+Rezolvat:
+!Singleton
+!pachete
+!this
+
+In lucru:
+1/3 calse cu mai multi constructori folositi
+1/? set folosit
