@@ -17,9 +17,8 @@ import java.awt.Font;
 public class InterfataMain {
     private JFrame FereastraDeDeschidere;
     private Utilizator persoana;
-    //adugare la creeaza si urmator nr de persoane
 
-    public InterfataMain(){ // logo, aragare text rand2, culori
+    public InterfataMain(){ // logo, culori
         FereastraDeDeschidere = new JFrame();
         FereastraDeDeschidere.setTitle("Hotel Firenze: Pagina de Deschidere");
         FereastraDeDeschidere.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
