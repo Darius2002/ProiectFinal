@@ -77,7 +77,7 @@ public class InterfataMain {
         ferestra.setSize(600, 600);
         ferestra.setLocationRelativeTo(null);
 
-        JPanel PanouPrincipal = new JPanel(new GridLayout(4, 1));
+        JPanel PanouPrincipal = new JPanel(new GridLayout(5, 1));
 
         JPanel rand1 = new JPanel();
         JLabel text1 = new JLabel("Nume: ");
@@ -97,6 +97,12 @@ public class InterfataMain {
         JTextField textField3 = new JTextField(4);
         rand3.add(textField3);
         
+        JPanel rand5 = new JPanel();
+        JLabel text5 = new JLabel("Numarul de pesoane:");
+        rand5.add(text5);
+        JTextField textField4 = new JTextField(2);
+        rand5.add(textField4);
+
         JPanel rand4 = new JPanel();
         JButton salveaza = new JButton("Salveaza");
          salveaza.addActionListener(new ActionListener() {
@@ -105,10 +111,14 @@ public class InterfataMain {
                 String nr = textField3.getText();
                 String parola = textField2.getText();
                 String nume = textField1.getText();
+                String nrP = textField4.getText();
                 try{
                     int Nr = Integer.parseInt(nr);
+                    int NrP = Integer.parseInt(nrP);
+                    // fereastra modala
                     persoana = Utilizator.Init(nume, parola);
                     persoana.setPortofel(Nr);
+                    persoana.setNrPersoane(NrP);
                     JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(salveaza);
                     currentFrame.dispatchEvent(new WindowEvent(currentFrame, WindowEvent.WINDOW_CLOSING));
                     /// urmatoare fereastra
@@ -119,7 +129,7 @@ public class InterfataMain {
                     eroare.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     eroare.setSize(300, 100);
                     eroare.setLocationRelativeTo(null);
-                    JLabel text4 = new JLabel("Adaugati o valoare numerica in campul portofel");
+                    JLabel text4 = new JLabel("Adaugati o valoare numerica in campul/campurile unde se cer");
                     eroare.add(text4);
                     eroare.setVisible(true);
                 }
@@ -131,6 +141,7 @@ public class InterfataMain {
         PanouPrincipal.add(rand1);
         PanouPrincipal.add(rand2);
         PanouPrincipal.add(rand3);
+        PanouPrincipal.add(rand5);
         PanouPrincipal.add(rand4);
         ferestra.add(PanouPrincipal);
         ferestra.setVisible(true);
@@ -144,7 +155,7 @@ public class InterfataMain {
         fereastra.setSize(600, 600);
         fereastra.setLocationRelativeTo(null);
 
-        JPanel PanouPrincipal = new JPanel(new GridLayout(2, 1));
+        JPanel PanouPrincipal = new JPanel(new GridLayout(3, 1));
 
         JPanel rand1 = new JPanel();
         JLabel text1 = new JLabel("Depunde o suma in portofelul: ");
@@ -152,16 +163,27 @@ public class InterfataMain {
         JTextField textField1 = new JTextField(4);
         rand1.add(textField1);
 
+        JPanel rand3 = new JPanel();
+        JLabel text3 = new JLabel("Numarul de persoane");
+        rand3.add(text3);
+        JTextField textField3 = new JTextField(2);
+        rand3.add(textField3);
+
+
         JPanel rand2 = new JPanel();
         JButton salveaza = new JButton("Salveaza");
         salveaza.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 String nr = textField1.getText();
+                String nrP = textField3.getText();
                 try{
                     int Nr = Integer.parseInt(nr);
+                    int NrP = Integer.parseInt(nrP);
+                    //Fereastra modala
                     persoana = Utilizator.Init();
                     persoana.setPortofel(Nr);
+                    persoana.setNrPersoane(NrP);
                     JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(salveaza);
                     currentFrame.dispatchEvent(new WindowEvent(currentFrame, WindowEvent.WINDOW_CLOSING));
 
@@ -174,7 +196,7 @@ public class InterfataMain {
                     eroare.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     eroare.setSize(300, 100);
                     eroare.setLocationRelativeTo(null);
-                    JLabel text4 = new JLabel("Adaugati o valoare numerica in campul portofel");
+                    JLabel text4 = new JLabel("Adaugati o valoare numerica in campul/campurile unde se cer");
                     eroare.add(text4);
                     eroare.setVisible(true);
                 }  
@@ -184,6 +206,7 @@ public class InterfataMain {
         
 
         PanouPrincipal.add(rand1);
+        PanouPrincipal.add(rand3);
         PanouPrincipal.add(rand2);
         fereastra.add(PanouPrincipal);
         fereastra.setVisible(true);

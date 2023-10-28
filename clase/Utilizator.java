@@ -38,4 +38,7 @@ public class Utilizator {
         this.portofel = portofel;
     }
 
+    public void setNrPersoane(int nrPersoane) {
+        this.nrPersoane = nrPersoane;
+    }
 }
