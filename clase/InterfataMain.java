@@ -14,7 +14,11 @@ public class InterfataMain {
     private String selectie;
     private JFrame FereastraDeDeschidere;
     private Utilizator persoana;
+<<<<<<< HEAD
     String imagine = "false-2061131_1280.png";
+=======
+    private ArrayList list = new ArrayList<Camere>();
+>>>>>>> 2bbf470dec02867a67820a07f141cdddab3a6deb
 
     public InterfataMain(){ // logo, culori
         FereastraDeDeschidere = new JFrame();
@@ -311,10 +315,11 @@ public class InterfataMain {
         JComboBox<String> dropdown = new JComboBox<>(optiuni);
         dropdown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
-        {
-            selectie = (String) dropdown.getSelectedItem();
-            JOptionPane.showMessageDialog(null, "Optiune selectata " + selectie);
-        }
+            {
+                String da = (String) dropdown.getSelectedItem();
+                selectie = da;
+                JOptionPane.showMessageDialog(null, "Optiune selectata " + selectie);
+            }
 
         });
         panel2.add(dropdown);
@@ -328,10 +333,28 @@ public class InterfataMain {
 
         JPanel panel4 = new JPanel();
         JButton salveaza = new JButton("Salveaza");
-
-
-
-
+        salveaza.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                String nrP = text.getText();
+                try{
+                    int NrP = Integer.parseInt(nrP);
+                    if (NrP > 5)
+                    {
+                        //fereastra eroare nu poti avea mai mult de 5 persoane in camera
+                    }
+                    else{
+                        //fereastra modala
+                        if(selectie.equals("Standard"));
+                        {
+                            Camere aux = new Camere();
+                        }
+                    }
+                }
+                catch(NumberFormatException nu){
+                    //fereastra eroare nu ai introdus nr;
+                }
+            }
+        });
         panel4.add(salveaza);
 
 
