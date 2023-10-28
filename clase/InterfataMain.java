@@ -130,13 +130,58 @@ public class InterfataMain {
                 try{
                     int Nr = Integer.parseInt(nr);
                     int NrP = Integer.parseInt(nrP);
+
                     // fereastra modala
-                    persoana = Utilizator.Init(nume, parola);
+                    JFrame continuare = new JFrame("Continuare");
+                    continuare.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    continuare.setSize(300, 200);
+                    continuare.setLocationRelativeTo(null);
+
+                    JPanel panouMare = new JPanel(new GridLayout(2, 1));
+
+                    JPanel panel1 = new JPanel();
+                    JLabel apas = new JLabel("Doriti sa continuati?");
+                    panel1.add(apas);
+
+                    JPanel panel2 = new JPanel();
+                    
+                    JButton daButton = new JButton("Da");
+                    daButton.addActionListener(new ActionListener() {
+                         public void actionPerformed(ActionEvent e){
+                            persoana = Utilizator.Init(nume, parola);
+                            persoana.setPortofel(Nr);
+                            persoana.setNrPersoane(NrP);
+                            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(daButton);
+                            currentFrame.dispatchEvent(new WindowEvent(currentFrame, WindowEvent.WINDOW_CLOSING));
+                            ferestra.dispose();
+                            //urmatoarea fereastra (se apeleaza functia)
+                         }
+                    });
+                    panel2.add(daButton);
+
+                    JButton nuButton = new JButton("Nu");
+                    nuButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e)
+                        {
+                            continuare.dispose();
+                        }
+            
+                    });
+                    panel2.add(nuButton);
+
+                    panouMare.add(panel1);
+                    panouMare.add(panel2);
+                    continuare.add(panouMare);
+                    continuare.setVisible(true);
+
+            
+                   /*  persoana = Utilizator.Init(nume, parola);
                     persoana.setPortofel(Nr);
                     persoana.setNrPersoane(NrP);
-                    JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(salveaza);
-                    currentFrame.dispatchEvent(new WindowEvent(currentFrame, WindowEvent.WINDOW_CLOSING));
+                    //JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(salveaza);
+                    //currentFrame.dispatchEvent(new WindowEvent(currentFrame, WindowEvent.WINDOW_CLOSING));
                     /// urmatoare fereastra
+                    */
                 }
                 catch(NumberFormatException nu){
                     JFrame eroare = new JFrame();
