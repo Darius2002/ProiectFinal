@@ -12,7 +12,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class InterfataMain {
-    private String selectie;
+    private int aux;
+    private String selectie, felPrincipal, aperitiv, desert;
     private JFrame FereastraDeDeschidere;
     private Utilizator persoana;
     private String imagine = "false-2061131_1280.png";
@@ -160,7 +161,7 @@ public class InterfataMain {
                 try{
                     int Nr = Integer.parseInt(nr);
                     int NrP = Integer.parseInt(nrP);
-
+                    aux = NrP;
                     // fereastra modala
                     JFrame continuare = new JFrame("Continuare");
                     continuare.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -421,6 +422,10 @@ public class InterfataMain {
                     else if (NrP > persoana.getNrPersoane()){
                         JOptionPane.showMessageDialog(null, "Numarul de persoane selectate in aceasta camera este mai mare decat persoanele ce trebuie cazate");
                     }
+                    else if (selectie == null)
+                    {
+                         JOptionPane.showMessageDialog(null, "Nu ati selectat camera");
+                    }
                     else{
                         
                         int suma = NrP * Camere.pret(selectie);
@@ -436,7 +441,8 @@ public class InterfataMain {
                             frame.dispose();
                             if(persoana.getNrPersoane() == 0)
                             {
-                            //mergem mai departe
+                                persoana.setNrPersoane(aux);
+                                Restaurant();
                             }
                             else{
                                 AdaugareCamere();
@@ -462,7 +468,7 @@ public class InterfataMain {
 
     }
 
-    public void Eroare()
+    private void Eroare()
     {           
         JPanel panelMare = new JPanel();
         JPanel panel1 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -493,12 +499,12 @@ public class InterfataMain {
         }
     }
 
-    public void SchimbareCuloare(JPanel panel)
+    private void SchimbareCuloare(JPanel panel)
     {
         panel.setBackground(new Color(250,230,145));
     }
 
-    public void setButon(JButton buton)
+    private void setButon(JButton buton)
     {
         buton.setBackground(new Color(54,53,53));
         buton.setForeground(Color.WHITE);
@@ -507,9 +513,85 @@ public class InterfataMain {
         buton.setFocusPainted(false);
     }
 
-    public void setText(JLabel label)
+    private void setText(JLabel label)
     {
         label.setFont(new Font("Cambria", Font.BOLD, 15));
     }
+
+    private void Restaurant()
+    {
+        JFrame frame = new JFrame();
+        frame.setTitle("Hotel Firenze : Restaurant");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(1300, 500);
+        frame.setLocationRelativeTo(null);
+
+        JPanel panouPrincipal = new JPanel(new GridLayout(3, 1, 0, 0));
+        JPanel panou1 = new JPanel();
+        JLabel label = new JLabel("Bine ati venit in restaurantul nostru ");
+        panou1.add(label);
+
+        String[] aperitiv1 = {"Nimic", "Bruschete / 15 lei ", "Capreze / 20 lei ", "Platou cu salamuri italiene / 25 lei "},
+        felPrincipal2 = {"Nimic", "Pizza / 35 lei ", "Lasagna / 40 lei ", "Pasta Carbonara / 38 lei"},
+        desert3 = {"Nimic", "Panna Cotta / 25 lei ", "Profiterol / 25 lei", "Tiramisu / 25 lei "};
+
+        JPanel panou2 = new JPanel(new GridLayout(aux, 4));
+
+        for (int i = 0; i < aux; i++)
+        {
+            JPanel panou = new JPanel();
+            JLabel label2 = new JLabel("Persoana nr" + (i + 1) + " a comandat :" );
+            label2.setFont(new Font("Cambria", Font.BOLD,15));
+            label2.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
+            panou2.add(label2);
+            JComboBox<String> box1 = new JComboBox<>(aperitiv1);
+            JComboBox<String> box2 = new JComboBox<>(felPrincipal2);
+            JComboBox<String> box3 = new JComboBox<>(desert3);
+            box1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+                {
+                    String da1 = (String) box1.getSelectedItem();
+                    aperitiv = da1;
+                    JOptionPane.showMessageDialog(null, "Optiune selectata " + aperitiv);
+                 }
+            });
+            panou.add(box1);
+            box2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+                {
+                    String da2 = (String) box2.getSelectedItem();
+                    felPrincipal = da2;
+                    JOptionPane.showMessageDialog(null, "Optiune selectata " + felPrincipal);
+                 }
+            });
+            panou.add(box2);
+            box3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+                {
+                    String da3 = (String) box3.getSelectedItem();
+                    desert = da3;
+                    JOptionPane.showMessageDialog(null, "Optiune selectata " + desert);
+                 }
+            });
+            panou.add(box3);
+            panou2.add(panou);
+        }
+        
+        JPanel panou3 = new JPanel();
+        JButton salvare = new JButton("Salveaza");
+
+        panou3.add(salvare);
+
+
+
+
+        panouPrincipal.add(panou1);
+        panouPrincipal.add(panou2);
+        panouPrincipal.add(panou3);
+        frame.add(panouPrincipal);
+        frame.setVisible(true);
+    }
+
+    
 }
 
