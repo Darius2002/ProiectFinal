@@ -8,12 +8,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 
 import javax.imageio.ImageIO;
 
 public class InterfataMain {
-    private int aux;
-    private String selectie, felPrincipal, aperitiv, desert;
+    private int aux, cntApertiv, cntFelPrincipal, cntDesert;
+    private String selectie;
+    private String[] felPrincipal = new String[100], aperitiv = new String[100], desert = new String[100];
     private JFrame FereastraDeDeschidere;
     private Utilizator persoana;
     private String imagine = "false-2061131_1280.png";
@@ -268,7 +270,6 @@ public class InterfataMain {
                 try{
                     int Nr = Integer.parseInt(nr);
                     int NrP = Integer.parseInt(nrP);
-                    //Fereastra modala
 
                     JFrame continuare = new JFrame("Continuare");
                     continuare.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -335,7 +336,7 @@ public class InterfataMain {
         fereastra.setVisible(true);
     }
 
-    private void AdaugareCamere() // adugare un rand nou in care sa spunem cat costa ficare timp de camera pe persoana max 5 pers in camera 
+    private void AdaugareCamere() // adugare un rand nou in care sa spunem ca au voie max 5 pers in camera 
     {
         JFrame frame = new JFrame("Selectare");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -443,6 +444,7 @@ public class InterfataMain {
                             if(persoana.getNrPersoane() == 0)
                             {
                                 persoana.setNrPersoane(aux);
+                                //intrbare resautant da sau nu
                                 Restaurant();
                             }
                             else{
@@ -519,7 +521,7 @@ public class InterfataMain {
         label.setFont(new Font("Cambria", Font.BOLD, 15));
     }
 
-    private void Restaurant()
+    private void Restaurant() // culori
     {
         JFrame frame = new JFrame();
         frame.setTitle("Hotel Firenze : Restaurant");
@@ -552,8 +554,9 @@ public class InterfataMain {
             public void actionPerformed(ActionEvent e)
                 {
                     String da1 = (String) box1.getSelectedItem();
-                    aperitiv = da1;
-                    JOptionPane.showMessageDialog(null, "Optiune selectata " + aperitiv);
+                    aperitiv[cntApertiv] = da1;
+                    cntApertiv++;
+                    JOptionPane.showMessageDialog(null, "Optiune selectata " + da1);
                  }
             });
             panou.add(box1);
@@ -561,8 +564,9 @@ public class InterfataMain {
             public void actionPerformed(ActionEvent e)
                 {
                     String da2 = (String) box2.getSelectedItem();
-                    felPrincipal = da2;
-                    JOptionPane.showMessageDialog(null, "Optiune selectata " + felPrincipal);
+                    felPrincipal[cntFelPrincipal] = da2;
+                    cntFelPrincipal++;
+                    JOptionPane.showMessageDialog(null, "Optiune selectata " + da2);
                  }
             });
             panou.add(box2);
@@ -570,8 +574,9 @@ public class InterfataMain {
             public void actionPerformed(ActionEvent e)
                 {
                     String da3 = (String) box3.getSelectedItem();
-                    desert = da3;
-                    JOptionPane.showMessageDialog(null, "Optiune selectata " + desert);
+                    desert[cntDesert] = da3;
+                    cntDesert++;
+                    JOptionPane.showMessageDialog(null, "Optiune selectata " + da3);
                  }
             });
             panou.add(box3);
@@ -582,19 +587,31 @@ public class InterfataMain {
         JButton salvare = new JButton("Salveaza");
         salvare.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
-                {
-
-                    if (list != null)
+                {   
+                    int suma = Calcul();
+                    if (suma > persoana.getPortofel())
+                    {
+                        //fereastra eroare ca nu avem destul bani si posbilitatea de a mai adauga bani se inchde ferestra si se reapleaza functia
+                        // sa spunem cati bani ne mai trbuie
+                    }
+                    //if(daca nu se selectaza nimic)
+                    // fereastra modala
+                    else if (list != null)
                     {
                         for (int i = 0; i < list.size(); i++)
                         {
                             Camere a = list.get(i);
                             for(int j = 0; j < a.getNrPersoane(); j++)
                             {
-                                listR.add(new Restaurant(a, aperitiv, felPrincipal, desert));
+                                listR.add(new Restaurant(a, aperitiv[j], felPrincipal[j], desert[j]));
                             }
                         }
-                    }        
+                        //apel fereastra final
+                    }
+                    else
+                    {
+                        //cazul de la pagina urmator + //apel fereastra final
+                    }      
                 }
             });
 
@@ -606,5 +623,62 @@ public class InterfataMain {
         frame.add(panouPrincipal);
         frame.setVisible(true);
     }
+
+    private int Calcul(){
+        int suma = 0;
+        for (int i = 0; i < cntApertiv; i++)
+        {
+            if(aperitiv[i].equals("Nimic"))
+            {
+                suma += 0;
+            }
+            else if (aperitiv[i].equals("Bruschete / 15 lei "))
+            {
+                suma += 15;
+            }
+            else if (aperitiv[i].equals("Capreze / 20 lei "))
+            {
+                suma += 20;
+            }
+            else{
+                suma += 25;
+            }
+
+            if(felPrincipal[i].equals("Nimic"))
+            {
+                suma += 0;
+            }
+            else if (felPrincipal[i].equals("Pizza / 35 lei "))
+            {
+                suma += 35;
+            }
+            else if (felPrincipal[i].equals("Lasagna / 40 lei "))
+            {
+                suma += 40;
+            }
+            else{
+                suma += 38;
+            }
+
+            if (desert[i].equals("Nimic"))
+            {
+                suma += 0;
+            }
+            else if (desert[i].equals("Panna Cotta / 25 lei "))
+            {
+                suma += 25;
+            }
+            else if (desert[i].equals("Profiterol / 25 lei"))
+            {
+                suma += 25;
+            }
+            else{
+               suma += 25;
+            }
+        }
+        return suma;
+    }
+
+    //interface metoda abstracta
 }
 
