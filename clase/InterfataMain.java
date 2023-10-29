@@ -76,7 +76,6 @@ public class InterfataMain {
         urmator.setFont(new Font("Cambria", Font.BOLD,20));
         urmator.setPreferredSize(new Dimension(130,50));
         urmator.setFocusPainted(false);
-        urmator.setPreferredSize(new Dimension(130,50));
         urmator.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -116,6 +115,7 @@ public class InterfataMain {
         JPanel rand1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         SchimbareCuloare(rand1);
         JLabel text1 = new JLabel("Nume: ");
+        setText(text1);
         rand1.add(text1);
         JTextField textField1 = new JTextField(20);
         rand1.add(textField1);
@@ -123,6 +123,7 @@ public class InterfataMain {
         JPanel rand2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         SchimbareCuloare(rand2);
         JLabel text2 = new JLabel("Parola: ");
+        setText(text2);
         rand2.add(text2);
         JTextField textField2 = new JTextField(20);
         rand2.add(textField2);
@@ -130,6 +131,7 @@ public class InterfataMain {
         JPanel rand3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         SchimbareCuloare(rand3);
         JLabel text3 = new JLabel("Depunde o suma in portofelul contului: ");
+        setText(text3);
         rand3.add(text3);
         JTextField textField3 = new JTextField(4);
         rand3.add(textField3);
@@ -137,6 +139,7 @@ public class InterfataMain {
         JPanel rand5 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         SchimbareCuloare(rand5);
         JLabel text5 = new JLabel("Numarul de persoane:");
+        setText(text5);
         rand5.add(text5);
         JTextField textField4 = new JTextField(2);
         textField4.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -145,6 +148,7 @@ public class InterfataMain {
         JPanel rand4 = new JPanel(new FlowLayout(FlowLayout.LEFT));
         SchimbareCuloare(rand4);
         JButton salveaza = new JButton("Salveaza");
+        setButon(salveaza);
         salveaza.setLayout(new FlowLayout(FlowLayout.LEFT));
         salveaza.addActionListener(new ActionListener() {
             @Override
@@ -166,12 +170,16 @@ public class InterfataMain {
                     JPanel panouMare = new JPanel(new GridLayout(2, 1));
 
                     JPanel panel1 = new JPanel();
+                    SchimbareCuloare(panel1);
                     JLabel apas = new JLabel("Doriti sa continuati?");
+                    apas.setFont(new Font("Cambria", Font.BOLD, 20));
                     panel1.add(apas);
 
                     JPanel panel2 = new JPanel();
+                    SchimbareCuloare(panel2);
                     
                     JButton daButton = new JButton("Da");
+                    setButon(daButton);
                     daButton.addActionListener(new ActionListener() {
                          public void actionPerformed(ActionEvent e){
                             persoana = Utilizator.Init(nume, parola);
@@ -187,6 +195,7 @@ public class InterfataMain {
                     panel2.add(daButton);
 
                     JButton nuButton = new JButton("Nu");
+                    setButon(nuButton);
                     nuButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e)
                         {
@@ -227,21 +236,28 @@ public class InterfataMain {
         fereastra.setLocationRelativeTo(null);
 
         JPanel PanouPrincipal = new JPanel(new GridLayout(3, 1));
+        SchimbareCuloare(PanouPrincipal);
 
         JPanel rand1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        SchimbareCuloare(rand1);
         JLabel text1 = new JLabel("Depunde o suma in portofelul: ");
+        setText(text1);
         rand1.add(text1);
         JTextField textField1 = new JTextField(4);
         rand1.add(textField1);
 
         JPanel rand3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        SchimbareCuloare(rand3);
         JLabel text3 = new JLabel("Numarul de persoane");
+        setText(text3);
         rand3.add(text3);
         JTextField textField3 = new JTextField(2);
         rand3.add(textField3);
 
         JPanel rand2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        SchimbareCuloare(rand2);
         JButton salveaza = new JButton("Salveaza");
+        setButon(salveaza);
         salveaza.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -258,14 +274,19 @@ public class InterfataMain {
                     continuare.setLocationRelativeTo(null);
 
                     JPanel panouMare = new JPanel(new GridLayout(2, 1));
+                    SchimbareCuloare(panouMare);
 
                     JPanel panel1 = new JPanel();
+                    SchimbareCuloare(panel1);
                     JLabel apas = new JLabel("Doriti sa continuati?");
+                    apas.setFont(new Font("Cambria", Font.BOLD, 20));
                     panel1.add(apas);
 
                     JPanel panel2 = new JPanel();
+                    SchimbareCuloare(panel2);
 
                     JButton daButton = new JButton("Da");
+                    setButon(daButton);
                     daButton.addActionListener(new ActionListener() {
                          public void actionPerformed(ActionEvent e){
                             persoana = Utilizator.Init();
@@ -278,6 +299,7 @@ public class InterfataMain {
                     panel2.add(daButton);
 
                     JButton nuButton = new JButton("Nu");
+                    setButon(nuButton);
                     nuButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e)
                         {
@@ -318,9 +340,12 @@ public class InterfataMain {
         frame.setLocationRelativeTo(null);
 
         JPanel panelPrincipal = new JPanel(new GridLayout(5,1));
+        SchimbareCuloare(panelPrincipal);
 
         JPanel panel5 = new JPanel();
-        JLabel label2 = new JLabel("                Nivelele de confort ale camerelor:");
+        SchimbareCuloare(panel5);
+        JLabel label2 = new JLabel( "Nivelele de confort ale camerelor:");
+        label2.setFont(new Font("Cambria", Font.BOLD, 25));
         panel5.add(label2);
 
         panel5.setLayout(new BoxLayout(panel5, BoxLayout.Y_AXIS));
@@ -331,7 +356,9 @@ public class InterfataMain {
         {
             String optiune = optiuni2[i];
             JLabel label5 = new JLabel(optiune);
+            setText(label5);
             JPanel eticheta = new JPanel();
+            SchimbareCuloare(eticheta);
             eticheta.add(label5);
             eticheta.setAlignmentX(Component.CENTER_ALIGNMENT);
             panel5.add(eticheta);
@@ -340,34 +367,47 @@ public class InterfataMain {
 
 
         JPanel panel1 = new JPanel();
+        SchimbareCuloare(panel1);
         JLabel text1 = new JLabel("Numarul de persoane : " + persoana.getNrPersoane());
+        setText(text1);
         panel1.add(text1);
         JLabel text2 = new JLabel("     Portofelul contului : " + persoana.getPortofel());
+        setText(text2);
         panel1.add(text2);
 
         JPanel panel2 = new JPanel();
+        SchimbareCuloare(panel2);
         String[] optiuni = {"Standard", "Mediu", "Ridicat"};
-        JComboBox<String> dropdown = new JComboBox<>(optiuni);
-        dropdown.addActionListener(new ActionListener() {
+        JComboBox<String> box = new JComboBox<>(optiuni);
+        Font fontCurent = box.getFont();
+        Font font = new Font(fontCurent.getName(), fontCurent.getStyle(), 15);
+        box.setFont(font);
+        box.setPreferredSize(new Dimension(200,50));
+        box.setSize(20, 5);
+        box.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                String da = (String) dropdown.getSelectedItem();
+                String da = (String) box.getSelectedItem();
                 selectie = da;
                 JOptionPane.showMessageDialog(null, "Optiune selectata " + selectie);
             }
 
         });
-        panel2.add(dropdown);
+        panel2.add(box);
 
 
         JPanel panel3 = new JPanel();
+        SchimbareCuloare(panel3);
         JLabel label = new JLabel ("Numarul de persoane cazate in camera : ");
+        setText(label);
         panel3.add(label);
         JTextField text = new JTextField(3);
         panel3.add(text);
 
         JPanel panel4 = new JPanel();
+        SchimbareCuloare(panel4);
         JButton salveaza = new JButton("Salveaza");
+        setButon(salveaza);
         salveaza.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 String nrP = text.getText();
@@ -433,6 +473,7 @@ public class InterfataMain {
         eroare.setLocationRelativeTo(null);
 
         JLabel text4 = new JLabel("Adaugati o valoare numerica");
+        setText(text4);
         panel1.add(text4);
 
         try{
@@ -455,6 +496,20 @@ public class InterfataMain {
     public void SchimbareCuloare(JPanel panel)
     {
         panel.setBackground(new Color(250,230,145));
+    }
+
+    public void setButon(JButton buton)
+    {
+        buton.setBackground(new Color(54,53,53));
+        buton.setForeground(Color.WHITE);
+        buton.setFont(new Font("Cambria", Font.BOLD,20));
+        //buton.setPreferredSize(new Dimension(130,50));
+        buton.setFocusPainted(false);
+    }
+
+    public void setText(JLabel label)
+    {
+        label.setFont(new Font("Cambria", Font.BOLD, 15));
     }
 }
 
