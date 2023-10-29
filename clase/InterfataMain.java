@@ -18,7 +18,7 @@ public class InterfataMain {
     private String imagine = "false-2061131_1280.png";
     private ArrayList list = new ArrayList<Camere>();
 
-    public InterfataMain(){ // logo, culori
+    public InterfataMain(){ 
         FereastraDeDeschidere = new JFrame();
         ImageIcon iconita = new ImageIcon("Desktop - 20.png");
         FereastraDeDeschidere.setIconImage(iconita.getImage());
@@ -99,7 +99,7 @@ public class InterfataMain {
     }
 
 
-    private void FereastraCreeazaCont() // scroll, culori
+    private void FereastraCreeazaCont() 
     {
 
         JFrame ferestra = new JFrame();
@@ -227,7 +227,7 @@ public class InterfataMain {
         ferestra.setVisible(true);
     }
 
-    private void Urmator() // culori 
+    private void Urmator() 
     {
         JFrame fereastra = new JFrame();
         fereastra.setTitle("Hotel Firenze: Selectie");
@@ -294,6 +294,7 @@ public class InterfataMain {
                             persoana.setNrPersoane(NrP);
                             fereastra.dispose();
                             continuare.dispose();
+                            //urmatoarea ferestra
                          }
                     });
                     panel2.add(daButton);
@@ -314,7 +315,7 @@ public class InterfataMain {
                     continuare.add(panouMare);
                     continuare.setVisible(true);
 
-                    // urmatoarea fereastra
+                    
                 }
                 catch(NumberFormatException nu)
                 {
@@ -415,11 +416,9 @@ public class InterfataMain {
                     int NrP = Integer.parseInt(nrP);
                     if (NrP > 5)
                     {
-                        //fereastra eroare nu poti avea mai mult de 5 persoane in camera
                         JOptionPane.showMessageDialog(null, "Nu poti avea mai mult de 5 persoane in camera");
                     }
                     else if (NrP > persoana.getNrPersoane()){
-                        // fereastra nr de pesoane selectate in acesta camera este mai mare decat persoanle ce trebuie cazate;
                         JOptionPane.showMessageDialog(null, "Numarul de persoane selectate in aceasta camera este mai mare decat persoanele ce trebuie cazate");
                     }
                     else{
@@ -429,22 +428,23 @@ public class InterfataMain {
                         {
                             //fereastra eroare ca nu avem destul bani si posbilitatea de a mai adauga bani se inchde ferestra si se reapleaza functia
                         }
-                        else if(persoana.getNrPersoane() == 0)
-                        {
-                            //mergem mai departe
-                            frame.dispose();
-                        }
                         else{
+                            //fereastra modala
                             list.add(new Camere(selectie, NrP));
                             persoana.ScaderePersoane(NrP);
                             persoana.scaderePortfel(suma);
                             frame.dispose();
-                            AdaugareCamere();
+                            if(persoana.getNrPersoane() == 0)
+                            {
+                            //mergem mai departe
+                            }
+                            else{
+                                AdaugareCamere();
+                            }
                         }
                     }
                 }
                 catch(NumberFormatException nu){
-                    //fereastra eroare nu ai introdus nr;
                     JOptionPane.showMessageDialog(null, "Nu ai introdus numar");
                 }
             }
