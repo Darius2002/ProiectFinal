@@ -19,46 +19,21 @@ public class Camere{
             ridicat = true;
         }
     }
-    public Camere()
-    {
-
+    public Camere(Object o)
+    {   
+        if(o == null || !(o instanceof Camere))
+        {
+            return;
+        }
+        else{
+            Camere aux = (Camere) o;
+            this.mediu = aux.mediu;
+            this.nrPersoane = aux.nrPersoane;
+            this.standard = aux.standard;
+            this.ridicat = aux.ridicat;
+        }
     }
-    
-    public void setMediu(boolean mediu) {
-        this.mediu = mediu;
-    }
-
-    public void setRidicat(boolean ridicat) {
-        this.ridicat = ridicat;
-    }
-
-    public void setStandard(boolean standard) {
-        this.standard = standard;
-    }
-
-    public void setNrPersoane(int nrPersoane) {
-        this.nrPersoane = nrPersoane;
-    }
-
-    public int getNrPersoane() {
-        return nrPersoane;
-    }
-
-    public boolean getStandard()
-    {
-        return standard;
-    }
-    
-    public boolean getMediu()
-    {
-        return mediu;
-    }
-
-    public boolean getRidicat()
-    {
-        return ridicat;
-    }
-
+   
     static int pret(String s)
     {
          if (s.equals("Standard"))
@@ -73,5 +48,16 @@ public class Camere{
         {
           return PretRidicat;  
         }
+    }
+
+    public int getNrPersoane() {
+        return nrPersoane;
+    }
+    
+    @Override
+    public String toString() {
+        return "Tipul de camera standard: " + standard + " mediu: " 
+        + mediu + " ridicat: " + ridicat 
+        + " si numarul de persoane este " + nrPersoane;
     }
 }

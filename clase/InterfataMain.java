@@ -17,7 +17,8 @@ public class InterfataMain {
     private JFrame FereastraDeDeschidere;
     private Utilizator persoana;
     private String imagine = "false-2061131_1280.png";
-    private ArrayList list = new ArrayList<Camere>();
+    private ArrayList<Camere> list = new ArrayList<Camere>();
+    private ArrayList listR = new ArrayList<Restaurant>();
 
     public InterfataMain(){ 
         FereastraDeDeschidere = new JFrame();
@@ -579,11 +580,25 @@ public class InterfataMain {
         
         JPanel panou3 = new JPanel();
         JButton salvare = new JButton("Salveaza");
+        salvare.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+                {
+
+                    if (list != null)
+                    {
+                        for (int i = 0; i < list.size(); i++)
+                        {
+                            Camere a = list.get(i);
+                            for(int j = 0; j < a.getNrPersoane(); j++)
+                            {
+                                listR.add(new Restaurant(a, aperitiv, felPrincipal, desert));
+                            }
+                        }
+                    }        
+                }
+            });
 
         panou3.add(salvare);
-
-
-
 
         panouPrincipal.add(panou1);
         panouPrincipal.add(panou2);
@@ -591,7 +606,5 @@ public class InterfataMain {
         frame.add(panouPrincipal);
         frame.setVisible(true);
     }
-
-    
 }
 
