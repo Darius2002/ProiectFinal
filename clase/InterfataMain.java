@@ -427,7 +427,7 @@ public class InterfataMain {
                     }
                     else if (selectie == null)
                     {
-                         JOptionPane.showMessageDialog(null, "Nu ati selectat camera");
+                        JOptionPane.showMessageDialog(null, "Nu ati selectat camera");
                     }
                     else{
                         
@@ -591,8 +591,8 @@ public class InterfataMain {
                 {   
                     if (cntApertiv != aux || cntFelPrincipal != aux || cntDesert != aux)
                     {
-                        System.out.println("Caz nu s a selectat");
-                        //eroare nu sa selectat;
+                        JOptionPane.showMessageDialog(null, "Nu ati selectat obtiuni din meniu");
+                    
                     }
                     else{
 
@@ -610,7 +610,6 @@ public class InterfataMain {
                                 listR.add(new Restaurant(aperitiv[i], felPrincipal[i], desert[i]));
                                 
                             }
-                            Verifiacare();
                             //apel fiser/baza de date
                             //apel fereastra final
                         }
@@ -694,15 +693,6 @@ public class InterfataMain {
             }
         }
         return suma;
-    }
-
-    //interface metoda abstracta
-
-    void Verifiacare(){
-        for (int i = 0; i < listR.size(); i++)
-        {
-            System.out.println(listR.get(i).toString());
-        }
     }
 }
 

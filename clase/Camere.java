@@ -1,5 +1,5 @@
 package clase;
-public class Camere implements Interface{
+public class Camere{
     private boolean standard, mediu, ridicat;
     static final int PretStandard = 100 , PretMediu = 150, PretRidicat = 300, NrMAXpersoane = 5;
     private int nrPersoane;

@@ -1,7 +1,7 @@
 package clase;
 
 import clase.Camere;
-public class Restaurant  extends Camere implements Interface{
+public class Restaurant  extends Camere{
     private boolean ANimic, ABruschete, ACapreze, ASalam,
     PNimic, PPizza, PLasagna, PPaste, DNimic, DPanna, DProfi,
     DTira;
