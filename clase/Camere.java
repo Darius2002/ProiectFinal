@@ -1,5 +1,5 @@
 package clase;
-public class Camere{
+public class Camere implements Interface{
     private boolean standard, mediu, ridicat;
     static final int PretStandard = 100 , PretMediu = 150, PretRidicat = 300, NrMAXpersoane = 5;
     private int nrPersoane;
@@ -33,6 +33,10 @@ public class Camere{
             this.ridicat = aux.ridicat;
         }
     }
+
+    public Camere(){
+
+    }
    
     static int pret(String s)
     {
@@ -58,6 +62,6 @@ public class Camere{
     public String toString() {
         return "Tipul de camera standard: " + standard + " mediu: " 
         + mediu + " ridicat: " + ridicat 
-        + " si numarul de persoane este " + nrPersoane;
+        + " si numarul de persoane cazate este " + nrPersoane;
     }
 }

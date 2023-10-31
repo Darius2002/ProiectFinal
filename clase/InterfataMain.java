@@ -297,7 +297,8 @@ public class InterfataMain {
                             persoana.setNrPersoane(NrP);
                             fereastra.dispose();
                             continuare.dispose();
-                            //urmatoarea ferestra
+                            aux = NrP;
+                            Restaurant();
                          }
                     });
                     panel2.add(daButton);
@@ -588,30 +589,46 @@ public class InterfataMain {
         salvare.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
                 {   
-                    int suma = Calcul();
-                    if (suma > persoana.getPortofel())
+                    if (cntApertiv != aux || cntFelPrincipal != aux || cntDesert != aux)
                     {
-                        //fereastra eroare ca nu avem destul bani si posbilitatea de a mai adauga bani se inchde ferestra si se reapleaza functia
-                        // sa spunem cati bani ne mai trbuie
+                        System.out.println("Caz nu s a selectat");
+                        //eroare nu sa selectat;
                     }
-                    //if(daca nu se selectaza nimic)
-                    // fereastra modala
-                    else if (list != null)
-                    {
-                        for (int i = 0; i < list.size(); i++)
+                    else{
+
+                        int suma = Calcul();
+                        if (suma > persoana.getPortofel())
                         {
-                            Camere a = list.get(i);
-                            for(int j = 0; j < a.getNrPersoane(); j++)
-                            {
-                                listR.add(new Restaurant(a, aperitiv[j], felPrincipal[j], desert[j]));
-                            }
+                            System.out.println("Caz nu avem bani");
+                            //fereastra eroare ca nu avem destul bani si posbilitatea de a mai adauga bani se inchde ferestra si se reapleaza functia
+                            // sa spunem cati bani ne mai trbuie
                         }
-                        //apel fereastra final
-                    }
-                    else
-                    {
-                        //cazul de la pagina urmator + //apel fereastra final
-                    }      
+                        else if (list.isEmpty())
+                        {
+                            for (int i = 0; i < aux; i++)
+                            {
+                                listR.add(new Restaurant(aperitiv[i], felPrincipal[i], desert[i]));
+                                
+                            }
+                            Verifiacare();
+                            //apel fiser/baza de date
+                            //apel fereastra final
+                        }
+                        else
+                        {
+                            System.out.println("Caz cazat");
+                            for (int i = 0; i < list.size(); i++)
+                            {
+                                Camere a = list.get(i);
+                                for(int j = 0; j < a.getNrPersoane(); j++)
+                                {
+                                    listR.add(new Restaurant(a, aperitiv[j], felPrincipal[j], desert[j]));
+                                }
+                            }
+                            //apel fiser/baza de date
+                            //apel fereastra final
+                        }  
+                    }    
                 }
             });
 
@@ -680,5 +697,12 @@ public class InterfataMain {
     }
 
     //interface metoda abstracta
+
+    void Verifiacare(){
+        for (int i = 0; i < listR.size(); i++)
+        {
+            System.out.println(listR.get(i).toString());
+        }
+    }
 }
 

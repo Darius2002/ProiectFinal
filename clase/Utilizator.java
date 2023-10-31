@@ -1,5 +1,5 @@
 package clase;
-public class Utilizator {
+public abstract class Utilizator{
     private String nume, parola;
     private int portofel, nrPersoane;
     private static Utilizator iniUtilizator;
@@ -61,4 +61,5 @@ public class Utilizator {
     {
         portofel -= nr;
     }
+
 }
