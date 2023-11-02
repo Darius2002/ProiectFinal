@@ -107,6 +107,7 @@ public class InterfataMain {
     {
 
         JFrame ferestra = new JFrame();
+        SchimbareLogo(ferestra);
         ferestra.setTitle("Hotel Firenze: Creeaza cont");
         ferestra.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ferestra.setSize(400, 300);
@@ -167,6 +168,7 @@ public class InterfataMain {
                     aux = NrP;
                     // fereastra modala
                     JFrame continuare = new JFrame("Continuare");
+                    SchimbareLogo(continuare);
                     continuare.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     continuare.setSize(300, 200);
                     continuare.setLocationRelativeTo(null);
@@ -234,6 +236,7 @@ public class InterfataMain {
     private void Urmator() 
     {
         JFrame fereastra = new JFrame();
+        SchimbareLogo(fereastra);
         fereastra.setTitle("Hotel Firenze: Selectie");
         fereastra.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         fereastra.setSize(300, 200);
@@ -340,6 +343,7 @@ public class InterfataMain {
     private void AdaugareCamere() // adugare un rand nou in care sa spunem ca au voie max 5 pers in camera 
     {
         JFrame frame = new JFrame("Selectare");
+        SchimbareLogo(frame);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(600, 600);
         frame.setLocationRelativeTo(null);
@@ -461,7 +465,6 @@ public class InterfataMain {
         });
         panel4.add(salveaza);
 
-
         panelPrincipal.add(panel5);
         panelPrincipal.add(panel1);
         panelPrincipal.add(panel2);
@@ -525,6 +528,7 @@ public class InterfataMain {
     private void Restaurant() // culori
     {
         JFrame frame = new JFrame();
+        SchimbareLogo(frame);
         frame.setTitle("Hotel Firenze : Restaurant");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(1300, 500);
@@ -532,6 +536,7 @@ public class InterfataMain {
 
         JPanel panouPrincipal = new JPanel(new GridLayout(3, 1, 0, 0));
         JPanel panou1 = new JPanel();
+        SchimbareCuloare(panou1);
         JLabel label = new JLabel("Bine ati venit in restaurantul nostru ");
         panou1.add(label);
 
@@ -540,10 +545,12 @@ public class InterfataMain {
         desert3 = {"Nimic", "Panna Cotta / 25 lei ", "Profiterol / 25 lei", "Tiramisu / 25 lei "};
 
         JPanel panou2 = new JPanel(new GridLayout(aux, 4));
+        SchimbareCuloare(panou2);
 
         for (int i = 0; i < aux; i++)
         {
             JPanel panou = new JPanel();
+            SchimbareCuloare(panou);
             JLabel label2 = new JLabel("Persoana nr" + (i + 1) + " a comandat :" );
             label2.setFont(new Font("Cambria", Font.BOLD,15));
             label2.setBorder(BorderFactory.createEmptyBorder(0, 100, 0, 0));
@@ -585,13 +592,14 @@ public class InterfataMain {
         }
         
         JPanel panou3 = new JPanel();
+        SchimbareCuloare(panou3);
         JButton salvare = new JButton("Salveaza");
         salvare.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
                 {   
-                    if (cntApertiv != aux || cntFelPrincipal != aux || cntDesert != aux)
+                    if (cntApertiv < aux || cntFelPrincipal < aux || cntDesert < aux)
                     {
-                        JOptionPane.showMessageDialog(null, "Nu ati selectat obtiuni din meniu");
+                        JOptionPane.showMessageDialog(null, "Nu ati selectat optiuni din meniu");
                     
                     }
                     else{
@@ -610,8 +618,9 @@ public class InterfataMain {
                                 listR.add(new Restaurant(aperitiv[i], felPrincipal[i], desert[i]));
                                 
                             }
-                            //apel fiser/baza de date
+                            //apel fisier/baza de date
                             //apel fereastra final
+                            FereastraFinal();
                         }
                         else
                         {
@@ -624,6 +633,7 @@ public class InterfataMain {
                                     listR.add(new Restaurant(a, aperitiv[j], felPrincipal[j], desert[j]));
                                 }
                             }
+                            FereastraFinal();
                             //apel fiser/baza de date
                             //apel fereastra final
                         }  
@@ -694,5 +704,47 @@ public class InterfataMain {
         }
         return suma;
     }
+
+    public void SchimbareLogo(JFrame frame)
+    {
+        ImageIcon iconita = new ImageIcon("Desktop - 20.png");
+        frame.setIconImage(iconita.getImage());
+    }
+
+    public void FereastraFinal() {
+        JFrame finalFrame = new JFrame("Hotel Firenze: Final");
+        SchimbareLogo(finalFrame);
+        finalFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        finalFrame.setSize(700, 300);
+        finalFrame.setLocationRelativeTo(null);
+
+        JPanel panelPrincipal = new JPanel(new GridLayout(3, 1));
+
+        JPanel panel1 = new JPanel();
+        SchimbareCuloare(panel1);
+        JLabel label = new JLabel("Va multumim!");
+        label.setFont(new Font("Cambria", Font.BOLD, 35));
+        panel1.add(label);
+
+        JPanel panel2 = new JPanel();
+        SchimbareCuloare(panel2);
+        JLabel label2 = new JLabel("Comanda dvs a fost plasata");
+        label2.setFont(new Font("Cambria", Font.PLAIN, 25));
+        panel2.add(label2);
+
+        JPanel panel3 = new JPanel();
+        SchimbareCuloare(panel3);
+        JLabel label3 = new JLabel("Grazzie a tutti");
+        label3.setFont(new Font("Cambria", Font.BOLD, 27));
+        panel3.add(label3);
+
+    
+        panelPrincipal.add(panel1);
+        panelPrincipal.add(panel2);
+        panelPrincipal.add(panel3);
+        finalFrame.add(panelPrincipal);
+        finalFrame.setVisible(true);
+    }
+    
 }
 
