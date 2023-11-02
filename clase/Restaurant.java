@@ -111,6 +111,15 @@ public class Restaurant  extends Camere{
         }
     }
 
+    public String Afisare()
+    {
+        return super.Afisare() + " pesoane";
+    }
+
+    public String Afisare(int i){
+        return "Acesta este " + super.Afisare() + "de pesoane";
+    }
+
     @Override
     public String toString() {
         return super.toString() + " Comanda Aperitiv: Nimic = " +

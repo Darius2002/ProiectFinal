@@ -618,8 +618,11 @@ public class InterfataMain {
                                 listR.add(new Restaurant(aperitiv[i], felPrincipal[i], desert[i]));
                                 
                             }
+                            Restaurant afisare = (Restaurant)listR.get(0);
+                            System.out.println(afisare.Afisare());
+                            System.out.println(afisare.Afisare(1));
                             //apel fisier/baza de date
-                            //apel fereastra final
+                            
                             FereastraFinal();
                         }
                         else
@@ -633,9 +636,12 @@ public class InterfataMain {
                                     listR.add(new Restaurant(a, aperitiv[j], felPrincipal[j], desert[j]));
                                 }
                             }
-                            FereastraFinal();
+                            Restaurant afis = (Restaurant)listR.get(0);
+                            System.out.println(afis.Afisare());
+                            System.out.println(afis.Afisare(1));
                             //apel fiser/baza de date
-                            //apel fereastra final
+                            
+                            FereastraFinal();
                         }  
                     }    
                 }

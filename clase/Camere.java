@@ -38,6 +38,9 @@ public class Camere{
 
     }
    
+    public String Afisare(){
+        return "Numarul maxim " + NrMAXpersoane;
+    }
     static int pret(String s)
     {
          if (s.equals("Standard"))
