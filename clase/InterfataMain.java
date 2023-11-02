@@ -21,6 +21,7 @@ public class InterfataMain {
     private String imagine = "false-2061131_1280.png";
     private ArrayList<Camere> list = new ArrayList<Camere>();
     private ArrayList listR = new ArrayList<Restaurant>();
+    private boolean apasat;
 
     public InterfataMain(){ 
         FereastraDeDeschidere = new JFrame();
@@ -340,7 +341,7 @@ public class InterfataMain {
         fereastra.setVisible(true);
     }
 
-    private void AdaugareCamere() // adugare un rand nou in care sa spunem ca au voie max 5 pers in camera 
+    private void AdaugareCamere() 
     {
         JFrame frame = new JFrame("Selectare");
         SchimbareLogo(frame);
@@ -438,10 +439,80 @@ public class InterfataMain {
                         int suma = NrP * Camere.pret(selectie);
                         if (suma > persoana.getPortofel())
                         {
-                            //fereastra eroare ca nu avem destul bani si posbilitatea de a mai adauga bani se inchde ferestra si se reapleaza functia
+                            frame.dispose();
+                            JFrame frame5 = new JFrame("Eroare");
+                            SchimbareLogo(frame5);
+                            frame5.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            frame5.setSize(600, 300);
+                            frame5.setLocationRelativeTo(null);
+
+                            JPanel panelPrincipal = new JPanel(new GridLayout(2,1));
+
+                            JPanel panel1 = new JPanel();
+                            SchimbareCuloare(panel1);
+                            JLabel label2 = new JLabel("Nu aveti destui bani in portofel, va rog sa adaugati mai multi bani");
+                            label2.setFont(new Font("Cambria", Font.BOLD, 15));
+                            panel1.add(label2);
+
+                            JPanel panel2 = new JPanel();
+                            SchimbareCuloare(panel2);
+                            JButton buton = new JButton("Adauga");
+                            setButon(buton);
+
+    
+                            buton.addActionListener(new ActionListener() {
+                             public void actionPerformed(ActionEvent e){
+                                frame5.dispose();
+                                JFrame frame6 = new JFrame();
+                                frame6.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                                frame6.setSize(400, 200);
+                                frame6.setLocationRelativeTo(null);
+
+                                JPanel panouPrincipal = new JPanel(new GridLayout(2,1));
+
+                                JPanel panou1 = new JPanel();
+                                SchimbareCuloare(panou1);
+                                JLabel text = new JLabel("Adauga suma : ");
+                                JTextField field = new JTextField(4);
+                                panou1.add(text);
+                                panou1.add(field);
+
+                                JPanel panou2 = new JPanel();
+                                SchimbareCuloare(panou2);
+                                JButton ok = new JButton("Ok");
+                                setButon(ok);
+                                ok.addActionListener(new ActionListener() {
+                                     public void actionPerformed(ActionEvent e){
+                                        String numarPr = field.getText();
+                                        try{
+                                            int NumarPr = Integer.parseInt(numarPr);
+                                            persoana.adugarePortofel(NumarPr);
+                                            frame6.dispose();
+                                            AdaugareCamere();
+                                        }catch(NumberFormatException nu)
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Nu ai introdus numar");
+                                        }
+                                     }
+                                });
+                                panou2.add(ok);
+
+
+
+                                panouPrincipal.add(panou1);
+                                panouPrincipal.add(panou2);
+                                frame6.add(panouPrincipal);
+                                frame6.setVisible(true);                            
+                             }
+                            });
+                            panel2.add(buton);
+
+                            panelPrincipal.add(panel1);
+                            panelPrincipal.add(panel2);
+                            frame5.add(panelPrincipal);
+                            frame5.setVisible(true);
                         }
                         else{
-                            //fereastra modala
                             list.add(new Camere(selectie, NrP));
                             persoana.ScaderePersoane(NrP);
                             persoana.scaderePortfel(suma);
@@ -449,8 +520,46 @@ public class InterfataMain {
                             if(persoana.getNrPersoane() == 0)
                             {
                                 persoana.setNrPersoane(aux);
-                                //intrbare resautant da sau nu
-                                Restaurant();
+                                JFrame frameNou = new JFrame();
+                                SchimbareLogo(frameNou);
+                                frameNou.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                                frameNou.setSize(300, 200);
+                                frameNou.setLocationRelativeTo(null);
+                                JPanel panouMare = new JPanel(new GridLayout(2,1));
+
+                                JPanel panou1 = new JPanel();
+                                SchimbareCuloare(panou1);
+                                JLabel label2 = new JLabel("Vreti sa mergeti la restaurant?");
+                                panou1.add(label2);
+                                
+                                JPanel panou2 = new JPanel();
+                                SchimbareCuloare(panou2);
+                                JButton da = new JButton("Da");
+                                setButon(da);
+                                
+                                da.addActionListener(new ActionListener() {
+                                    public void actionPerformed(ActionEvent e){
+                                        frameNou.dispose();
+                                        Logare();
+                                    }
+                                });
+                                panou2.add(da);
+
+                                JButton nu = new JButton("Nu");
+                                setButon(nu);
+                                nu.addActionListener(new ActionListener(){
+                                    public void actionPerformed(ActionEvent e){
+                                        frameNou.dispose();
+                                        FereastraFinal();
+                                    }
+                                });
+                                panou2.add(nu);
+
+
+                                panouMare.add(panou1);
+                                panouMare.add(panou2);
+                                frameNou.add(panouMare);
+                                frameNou.setVisible(true);
                             }
                             else{
                                 AdaugareCamere();
@@ -473,6 +582,81 @@ public class InterfataMain {
         frame.add(panelPrincipal);
         frame.setVisible(true);
 
+    }
+    
+    private void Logare()
+    {
+        JFrame frame = new JFrame("Hotel Firenze: Beneficii");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setSize(600, 400);
+        frame.setLocationRelativeTo(null);
+        SchimbareLogo(frame);
+
+        JPanel panouPrincipal = new JPanel(new GridLayout(4, 1));
+        JPanel panou1 = new JPanel();
+        SchimbareCuloare(panou1);
+        JLabel label = new JLabel("Daca doresti sa beneficiezi de 10% reducere, logheaza-te, altfel, apasa nu");
+        label.setFont(new Font("Cambria", Font.BOLD, 15));
+        panou1.add(label);
+
+        JPanel panou2 = new JPanel();
+        SchimbareCuloare(panou2);
+        JLabel label2 = new JLabel("Nume: ");
+        JTextField nume = new JTextField(20);
+        panou2.add(label2);
+        panou2.add(nume);
+
+        JPanel panou3 = new JPanel();
+        SchimbareCuloare(panou3);
+        JLabel label3 = new JLabel("Parola: ");
+        JTextField parola = new JTextField(20);
+        panou3.add(label3);
+        panou3.add(parola);
+
+
+        JPanel panou4 = new JPanel();
+        SchimbareCuloare(panou4);
+        JButton logareButton = new JButton("Logare");
+        setButon(logareButton);
+
+        logareButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                String nume2 = nume.getText();
+                String parola2 = parola.getText();
+                if (!(nume2.equals(persoana.getNume())) || !(parola2.equals(persoana.getParola())))
+                {
+                    JOptionPane.showMessageDialog(null, "Numele / parola sunt gresite");
+                }
+                else
+                {
+                    frame.dispose();
+                    apasat = true;
+                    Restaurant();
+                }
+
+            }
+        });
+        panou4.add(logareButton);
+
+        JButton nuButton = new JButton("Nu");
+        setButon(nuButton);
+        nuButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e)
+            {
+                frame.dispose();
+                Restaurant();
+            }
+        });
+        panou4.add(nuButton);
+
+
+        panouPrincipal.add(panou1);
+        panouPrincipal.add(panou2);
+        panouPrincipal.add(panou3);
+        panouPrincipal.add(panou4);
+
+        frame.add(panouPrincipal);
+        frame.setVisible(true);
     }
 
     private void Eroare()
@@ -525,13 +709,13 @@ public class InterfataMain {
         label.setFont(new Font("Cambria", Font.BOLD, 15));
     }
 
-    private void Restaurant() // culori
+    private void Restaurant()
     {
         JFrame frame = new JFrame();
         SchimbareLogo(frame);
         frame.setTitle("Hotel Firenze : Restaurant");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(1300, 500);
+        frame.setSize(1300, 700);
         frame.setLocationRelativeTo(null);
 
         JPanel panouPrincipal = new JPanel(new GridLayout(3, 1, 0, 0));
@@ -589,7 +773,10 @@ public class InterfataMain {
             });
             panou.add(box3);
             panou2.add(panou);
+
         }
+
+
         
         JPanel panou3 = new JPanel();
         SchimbareCuloare(panou3);
@@ -604,12 +791,92 @@ public class InterfataMain {
                     }
                     else{
 
-                        int suma = Calcul();
+                        int suma = 0;
+                        if (apasat)
+                        {
+                            suma = Calcul();
+                            suma = suma - (suma * 10/100);
+                        }
+                        else
+                        {
+                            suma = Calcul();
+                        }
+
                         if (suma > persoana.getPortofel())
                         {
-                            System.out.println("Caz nu avem bani");
-                            //fereastra eroare ca nu avem destul bani si posbilitatea de a mai adauga bani se inchde ferestra si se reapleaza functia
-                            // sa spunem cati bani ne mai trbuie
+                            frame.dispose();
+                            JFrame frame5 = new JFrame("Eroare");
+                            SchimbareLogo(frame5);
+                            frame5.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            frame5.setSize(600, 300);
+                            frame5.setLocationRelativeTo(null);
+
+                            JPanel panelPrincipal = new JPanel(new GridLayout(2,1));
+
+                            JPanel panel1 = new JPanel();
+                            SchimbareCuloare(panel1);
+                            JLabel label2 = new JLabel("Nu aveti destui bani in portofel, va rog sa adaugati mai multi bani");
+                            label2.setFont(new Font("Cambria", Font.BOLD, 15));
+                            panel1.add(label2);
+
+                            JPanel panel2 = new JPanel();
+                            SchimbareCuloare(panel2);
+                            JButton buton = new JButton("Adauga");
+                            setButon(buton);
+
+    
+                            buton.addActionListener(new ActionListener() {
+                             public void actionPerformed(ActionEvent e){
+                                frame5.dispose();
+                                JFrame frame6 = new JFrame();
+                                frame6.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                                frame6.setSize(400, 200);
+                                frame6.setLocationRelativeTo(null);
+
+                                JPanel panouPrincipal = new JPanel(new GridLayout(2,1));
+
+                                JPanel panou1 = new JPanel();
+                                SchimbareCuloare(panou1);
+                                JLabel text = new JLabel("Adauga suma : ");
+                                JTextField field = new JTextField(4);
+                                panou1.add(text);
+                                panou1.add(field);
+
+                                JPanel panou2 = new JPanel();
+                                SchimbareCuloare(panou2);
+                                JButton ok = new JButton("Ok");
+                                setButon(ok);
+                                ok.addActionListener(new ActionListener() {
+                                     public void actionPerformed(ActionEvent e){
+                                        String numarPr = field.getText();
+                                        try{
+                                            int NumarPr = Integer.parseInt(numarPr);
+                                            persoana.adugarePortofel(NumarPr);
+                                            frame6.dispose();
+                                            Resetare();
+                                            Restaurant();
+                                        }catch(NumberFormatException nu)
+                                        {
+                                            JOptionPane.showMessageDialog(null, "Nu ai introdus numar");
+                                        }
+                                     }
+                                });
+                                panou2.add(ok);
+
+
+
+                                panouPrincipal.add(panou1);
+                                panouPrincipal.add(panou2);
+                                frame6.add(panouPrincipal);
+                                frame6.setVisible(true);                            
+                             }
+                            });
+                            panel2.add(buton);
+
+                            panelPrincipal.add(panel1);
+                            panelPrincipal.add(panel2);
+                            frame5.add(panelPrincipal);
+                            frame5.setVisible(true);
                         }
                         else if (list.isEmpty())
                         {
@@ -622,7 +889,7 @@ public class InterfataMain {
                             System.out.println(afisare.Afisare());
                             System.out.println(afisare.Afisare(1));
                             //apel fisier/baza de date
-                            
+                            frame.dispose();
                             FereastraFinal();
                         }
                         else
@@ -640,7 +907,7 @@ public class InterfataMain {
                             System.out.println(afis.Afisare());
                             System.out.println(afis.Afisare(1));
                             //apel fiser/baza de date
-                            
+                            frame.dispose();
                             FereastraFinal();
                         }  
                     }    
@@ -711,6 +978,26 @@ public class InterfataMain {
         return suma;
     }
 
+    private void Resetare(){
+        for (int i = 0; i < aperitiv.length; i++)
+        {
+            aperitiv[i] = null;
+        }
+        cntApertiv = 0;
+
+        for (int i = 0; i < felPrincipal.length; i++)
+        {
+            felPrincipal[i] = null;
+        }
+        cntFelPrincipal = 0;
+
+        for (int i = 0; i < desert.length; i++)
+        {
+            desert[i] = null;
+        }
+        cntDesert = 0;
+    }
+
     public void SchimbareLogo(JFrame frame)
     {
         ImageIcon iconita = new ImageIcon("Desktop - 20.png");
@@ -724,19 +1011,13 @@ public class InterfataMain {
         finalFrame.setSize(700, 300);
         finalFrame.setLocationRelativeTo(null);
 
-        JPanel panelPrincipal = new JPanel(new GridLayout(3, 1));
+        JPanel panelPrincipal = new JPanel(new GridLayout(2, 1));
 
         JPanel panel1 = new JPanel();
         SchimbareCuloare(panel1);
         JLabel label = new JLabel("Va multumim!");
         label.setFont(new Font("Cambria", Font.BOLD, 35));
         panel1.add(label);
-
-        JPanel panel2 = new JPanel();
-        SchimbareCuloare(panel2);
-        JLabel label2 = new JLabel("Comanda dvs a fost plasata");
-        label2.setFont(new Font("Cambria", Font.PLAIN, 25));
-        panel2.add(label2);
 
         JPanel panel3 = new JPanel();
         SchimbareCuloare(panel3);
@@ -746,7 +1027,6 @@ public class InterfataMain {
 
     
         panelPrincipal.add(panel1);
-        panelPrincipal.add(panel2);
         panelPrincipal.add(panel3);
         finalFrame.add(panelPrincipal);
         finalFrame.setVisible(true);

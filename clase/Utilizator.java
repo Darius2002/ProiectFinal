@@ -52,6 +52,14 @@ public class Utilizator{
     public int getNrPersoane() {
         return nrPersoane;
     }
+    public String getNume()
+    {
+        return nume;
+    }
+    public String getParola()
+    {
+        return parola;
+    }
 
     public void ScaderePersoane(int nr){
         nrPersoane -= nr;
