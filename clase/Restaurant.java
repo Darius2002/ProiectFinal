@@ -113,11 +113,11 @@ public class Restaurant  extends Camere{
 
     public String Afisare()
     {
-        return super.Afisare() + " pesoane";
+        return super.Afisare() + " persoane";
     }
 
     public String Afisare(int i){
-        return "Acesta este " + super.Afisare() + "de pesoane";
+        return "Acesta este " + super.Afisare() + "de persoane";
     }
 
     @Override

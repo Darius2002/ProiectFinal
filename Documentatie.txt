@@ -1,0 +1,9 @@
+Documentatie:
+
+
+https://www.w3schools.com/java/java_files_create.asp
+https://www.youtube.com/watch?v=wzdCpJY6Y4c
+https://docs.oracle.com/javase/tutorial/essential/io/file.html
+https://docs.oracle.com/javase/tutorial/uiswing/components/button.html
+https://stackoverflow.com/questions/3420311/java-swing-button-colors
+https://docs.oracle.com/javase/tutorial/essential/exceptions/throwing.html
