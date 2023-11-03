@@ -910,7 +910,6 @@ public class InterfataMain {
                             Restaurant afis = (Restaurant)listR.get(0);
                             System.out.println(afis.Afisare());
                             System.out.println(afis.Afisare(1));
-                            //apel fisier/baza de date(adaugare listR)
                             ScriereFisier();
                             ScriereBazaDeDate();
                             frame.dispose();
@@ -1069,7 +1068,7 @@ public class InterfataMain {
         try{
             BufferedWriter writer = new BufferedWriter(new FileWriter("Proiect.session.sql", true));
 
-            String insertStatement = "INSERT INTO Cont VALUES (id, nume, parola, numarPersoane)" + " " + " 1" + persoana.getNume() + " " + persoana.getParola()+ " " + persoana.getNrPersoane();
+            String insertStatement = "INSERT INTO Cont VALUES (id, nume, parola, numarPersoane)" + " " + " 1 " + persoana.getNume() + " " + persoana.getParola()+ " " + persoana.getNrPersoane();
             writer.write(insertStatement);
             writer.newLine();
             writer.close();

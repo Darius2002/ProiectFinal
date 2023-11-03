@@ -1,5 +1,5 @@
 package clase;
-public class Camere{
+public class Camere implements Iinterfata{
     private boolean standard, mediu, ridicat;
     static final int PretStandard = 100 , PretMediu = 150, PretRidicat = 300, NrMAXpersoane = 5;
     private int nrPersoane;
@@ -37,7 +37,7 @@ public class Camere{
     public Camere(){
 
     }
-   
+   @Override
     public String Afisare(){
         return "Numarul maxim " + NrMAXpersoane;
     }
