@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
@@ -888,7 +891,8 @@ public class InterfataMain {
                             Restaurant afisare = (Restaurant)listR.get(0);
                             System.out.println(afisare.Afisare());
                             System.out.println(afisare.Afisare(1));
-                            //apel fisier/baza de date
+                            ScriereFisier();
+                            ScriereBazaDeDate();
                             frame.dispose();
                             FereastraFinal();
                         }
@@ -906,7 +910,9 @@ public class InterfataMain {
                             Restaurant afis = (Restaurant)listR.get(0);
                             System.out.println(afis.Afisare());
                             System.out.println(afis.Afisare(1));
-                            //apel fiser/baza de date
+                            //apel fisier/baza de date(adaugare listR)
+                            ScriereFisier();
+                            ScriereBazaDeDate();
                             frame.dispose();
                             FereastraFinal();
                         }  
@@ -1031,6 +1037,45 @@ public class InterfataMain {
         finalFrame.add(panelPrincipal);
         finalFrame.setVisible(true);
     }
+
+    private void ScriereFisier()
+    {
+        String numeFisier = "fisier.txt";
+        try{
+            FileWriter fileWriter = new FileWriter(numeFisier, true);
+            BufferedWriter buffer = new BufferedWriter(fileWriter);
+
+            for (int i = 0; i < listR.size(); i++)
+            {
+                Restaurant res = (Restaurant)listR.get(i);
+                buffer.newLine();
+                buffer.write(res.toString());
+            }
+
+            buffer.close();
+            fileWriter.close();
+            System.out.println("Datele au fost scrise in fisier cu succes");
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private void ScriereBazaDeDate()
+    {
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter("Proiect.session.sql", true));
+
+            String insertStatement = "INSERT INTO Cont VALUES (id, nume, parola, numarPersoane)" + " " + " 1" + persoana.getNume() + " " + persoana.getParola()+ " " + persoana.getNrPersoane();
+            writer.write(insertStatement);
+            writer.newLine();
+            writer.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
     
 }
-

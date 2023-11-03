@@ -122,12 +122,12 @@ public class Restaurant  extends Camere{
 
     @Override
     public String toString() {
-        return super.toString() + " Comanda Aperitiv: Nimic = " +
+        return super.toString() + " Comanda Aperitiv: Nimic : " +
         ANimic + " Bruschete = " + ABruschete + " Capreze = " 
         + ACapreze + " Platou salam = " + ASalam 
-        + " Comanda Fel Principal: Nimic = " + PNimic 
+        + " Comanda Fel Principal: Nimic :" + PNimic 
         + " Pizza = " + PPizza + " Lasagna = " + PLasagna + " Paste = " 
-        + PPaste + " Desert: Nimic = " + DNimic + " Panna Cotta = " 
+        + PPaste + " Desert: Nimic : " + DNimic + " Panna Cotta = " 
         + DPanna + " Profiterol = " + DProfi + " Tiramisu = " + DTira;
     }
 }
